@@ -3,15 +3,6 @@
 use App\Enrollee\Enrollee;
 use App\Utility\OtherExceptionClasses\XSRFTokenFromPOSTAndCookieAreNotEqual;
 
-/*Никогда не проверяй с помощью isset и empty пустое свойство или нет, если свойство приватное
-(empty($test->number)) = $test->number равен 5, но условие считает, что оно пустое
-(isset($test->number)) = $test->number равен 5, но условие считает, что оно пустое
-(isset($test->number)) = $test->number ничего не равен, условие считает, что оно пустое
-(isset($test->getNumber())) = выдает ошибку
-(empty($test->getNumber())) = $test->number равен 5, условие считает, что оно не пустое, т.е. истина
-Значит проверять, установлено значение у приватной переменной или нет, стоит через empty и только через геттер
-*/
-
 if (!array_key_exists('token', $_COOKIE)) {
 
     $token = generateToken(32);
