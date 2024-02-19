@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<htm>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../public/styles/style.css">
+    <title>Поиск абитуриентов</title>
+</head>
+<body>
+    <p>Поиск абитуриентов</p>
+    <p>Показаны только абитуриенты, найденные по запросу "<?= $viewHelper->shield($searchQuery) ?>"</p>
+    <p class="lineSpacing">
+        Имя<?= $viewHelper->space(17) ?>
+        Фамилия<?= $viewHelper->space(27) ?>
+        Номер группы<?= $viewHelper->space(15) ?>
+        Баллы
+    </p>
+    <p class="lineSpacing"><sub>------------------------------------------------------------------------------------------------------------------</sub></p>
+    <?php
+        foreach ($matriculants as $matriculant):
+        if (is_string($matriculant)) {
+            print_r("<p>" . $viewHelper->shield($matriculant) . "</p>");
+            break;
+        }
+        print_r(
+            "<p class='lineSpacing'>" .
+            $viewHelper->shield($matriculant->getName()) .
+            $viewHelper->formatting($matriculant->getName(), 10, 10) .
+            $viewHelper->shield($matriculant->getSurname()) .
+            $viewHelper->formatting($matriculant->getSurname(), 24, 10) .
+            $viewHelper->shield($matriculant->getGroupNumber()) .
+            $viewHelper->formatting($matriculant->getGroupNumber(), 5, 22) .
+            $viewHelper->shield($matriculant->getTotalPointsUSE()) .
+            "</p>");
+    endforeach;
+    ?>
+    <p class="lineSpacing"><sub>------------------------------------------------------------------------------------------------------------------</sub></p>
+    <a href="/home">Показать всех абитуриентов</a>
+</body>
+</html>

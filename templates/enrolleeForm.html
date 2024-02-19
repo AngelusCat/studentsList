@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Форма <?= $viewHelper->shield($textForFormByUserStatus) ?></title>
+</head>
+<body>
+
+<h1>Форма <?= $viewHelper->shield($textForFormByUserStatus) ?></h1>
+<!--Форма регистрации/редактирования данных-->
+<form action="/form" method="POST">
+
+<!--Имя-->
+<label for="name">Имя</label>
+<input type=text name="name" id="name" value="<?= $viewHelper->shield((!empty($enrollee->getName())) ? $enrollee->getName() : ''); ?>" maxlength="20" minlength="1" required><br>
+<p style="color: red">
+    <?php
+    if (isset($errors)):
+        print_r($viewHelper->shield(implode(" ", $errors->getListOfFieldErrors('name'))));
+    endif;
+    ?>
+</p>
+
+<!--Фамилия-->
+<label for="surname">Фамилия</label>
+<input type=text name="surname" id="surname" value="<?= $viewHelper->shield((!empty($enrollee->getSurname())) ? $enrollee->getSurname() : ''); ?>" maxlength="45" minlength="1" required><br>
+<p style="color: red">
+    <?php
+    if (isset($errors)):
+        print_r($viewHelper->shield(implode(" ", $errors->getListOfFieldErrors('surname'))));
+    endif;
+    ?>
+</p>
+
+<!--Пол-->
+<label for="gender">Пол</label>
+<select name="gender" id="gender" required>
+<option label="Женский" value="female"></option>
+<option label="Мужской" value="male"></option>
+</select><br><br>
+
+<!--Номер группы-->
+<label for="groupNumber">Номер группы</label>
+<input type=text name="groupNumber" id="groupNumber" value="<?= $viewHelper->shield((!empty($enrollee->getGroupNumber())) ? $enrollee->getGroupNumber() : ''); ?>" maxlength="5" minlength="2" required><br>
+<p style="color: red">
+    <?php
+    if (isset($errors)):
+        print_r($viewHelper->shield(implode(" ", $errors->getListOfFieldErrors('groupNumber'))));
+    endif;
+    ?>
+</p>
+
+<!--email-->
+<label for="email">e-mail</label>
+<input type=email name="email" id="email" value="<?= $viewHelper->shield((!empty($enrollee->getEmail())) ? $enrollee->getEmail() : ''); ?>" maxlength="50" minlength="4" required><br>
+<p style="color: red">
+    <?php
+    if (isset($errors)):
+        print_r($viewHelper->shield(implode(" ", $errors->getListOfFieldErrors('email'))));
+    endif;
+    ?>
+</p>
+
+<!--Суммарное число баллов на ЕГЭ-->
+<label for="totalPointsUSE">Суммарное число баллов на ЕГЭ</label>
+<input type=number name="totalPointsUSE" id="totalPointsUSE" value="<?= $viewHelper->shield((!empty($enrollee->getTotalPointsUSE())) ? $enrollee->getTotalPointsUSE() : ''); ?>" min="144" max="300" maxlength="3" minlength="3" required><br>
+<p style="color: red">
+    <?php
+    if (isset($errors)):
+        print_r($viewHelper->shield(implode(" ", $errors->getListOfFieldErrors('totalPointsUSE'))));
+    endif;
+    ?>
+</p>
+
+<!--Год рождения-->
+<label for="yearOfBirth">Год рождения</label>
+<input type=number name="yearOfBirth" id="yearOfBirth" value="<?= $viewHelper->shield((!empty($enrollee->getYearOfBirth())) ? $enrollee->getYearOfBirth() : ''); ?>" min="1892" max="2019" maxlength="4" minlength="4" required><br>
+<p style="color: red">
+    <?php
+    if (isset($errors)):
+        print_r($viewHelper->shield(implode(" ", $errors->getListOfFieldErrors('yearOfBirth'))));
+    endif;
+    ?>
+</p>
+
+<!--Место регистрации-->
+<label for="location">Место жительства</label>
+<select name="location" id="location" required>
+<option label="Местный" value="local"></option>
+<option label="Иногородний" value="nonresident"></option>
+</select><br><br>
+
+
+<input type="hidden" name="token" value="<?= $viewHelper->shield($token) ?>">
+
+<!--Кнопка Отправить данные-->
+<input type=submit value="Отправить данные">
+
+</form>
+
+<br><a href="/home">Вернуться на главную страницу</a>
+<!--Конец формы регистрации-->
+<body>
+</html>

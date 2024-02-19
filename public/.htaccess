@@ -1,0 +1,6 @@
+RewriteEngine on
+RewriteRule .htaccess - [F]
+RewriteRule ^.*\/styles\/(.*)\.css$ /styles/$1.css [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [L]

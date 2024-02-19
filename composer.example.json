@@ -1,0 +1,9 @@
+{
+    "autoload": {
+        "psr-4": {"App\\": "src/"},
+        "files": ["src/Utility/utils.php"]
+    },
+    "require": {
+        "psr/container": "^2.0"
+    }
+}

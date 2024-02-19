@@ -1,0 +1,11 @@
+.inlineDisplay {
+    display: inline;
+}
+
+.lineSpacing {
+    line-height: 0.2;
+}
+
+body {
+    font-family: Consolas;
+}
